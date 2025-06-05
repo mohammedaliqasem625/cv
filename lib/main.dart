@@ -35,6 +35,10 @@ class Application extends StatelessWidget {
       child: Column(
         children: [
           _getheader(),
+          SizedBox(height: 20),
+          _getSkillCard(),
+          SizedBox(height: 20),
+          _getHistoryColumn(),
         ],
       ),
     );
@@ -43,7 +47,10 @@ class Application extends StatelessWidget {
   Widget _getheader() {
     return Column(
       children: [
-        SizedBox(height: 20),
+        SizedBox(
+          width: double.infinity,
+          height: 20,
+        ),
         CircleAvatar(
           backgroundImage: AssetImage('images/mohammadali.png'),
           radius: 100,
@@ -61,6 +68,73 @@ class Application extends StatelessWidget {
         ),
         SizedBox(height: 15),
         _getRowicon()
+      ],
+    );
+  }
+
+  Widget _getHistoryColumn() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      width: double.infinity,
+      color: Colors.grey[100],
+      child: Column(
+        children: [
+          Text(
+            'شغلاتي الي اشتغلتها قبل',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          _getHistorucolumn()
+        ],
+      ),
+    );
+  }
+
+  Widget _getHistorucolumn() {
+    var list = [
+      ' صمّمت موقع إلكتروني ابداع كربلاء',
+      ' صمّمت موقع لاکاد تکنولوجی',
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 20,
+        ),
+        for (var title in list)
+          Text(
+            '$title',
+            textDirection: TextDirection.rtl,
+          )
+      ],
+    );
+  }
+
+  Widget _getSkillCard() {
+    var List = ['WordPress', 'HTML', 'CSS', 'PYTHON', 'Dart', 'Flutter'];
+    return Wrap(
+      children: [
+        for (var skill in List)
+          Card(
+            elevation: 6,
+            shadowColor: Colors.red,
+            child: Column(
+              children: [
+                Container(
+                  height: 80.0,
+                  child: Image(
+                    image: AssetImage('images/$skill.png'),
+                    width: 80.0,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text('$skill'),
+                ),
+              ],
+            ),
+          ),
       ],
     );
   }
